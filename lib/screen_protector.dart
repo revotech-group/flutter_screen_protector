@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:screen_protector/extension/color_extension.dart';
 
 class ScreenProtector {
@@ -51,15 +53,15 @@ class ScreenProtector {
     }
   }
 
-  /// Supported for Anddroid only, donothing when run on iOS.
-  static Future<void> protectDataLeakageOn() async {
-    return await _channel.invokeMethod('protectDataLeakageOn');
-  }
+  // /// Supported for Anddroid only, donothing when run on iOS.
+  // static Future<void> protectDataLeakageOn() async {
+  //   return await _channel.invokeMethod('protectDataLeakageOn');
+  // }
 
-  /// Supported for Anddroid only, donothing when run on iOS.
-  static Future<void> protectDataLeakageOff() async {
-    return await _channel.invokeMethod('protectDataLeakageOff');
-  }
+  // /// Supported for Anddroid only, donothing when run on iOS.
+  // static Future<void> protectDataLeakageOff() async {
+  //   return await _channel.invokeMethod('protectDataLeakageOff');
+  // }
 
   /// Supported for iOS only, donothing when run on Android.
   static Future<void> protectDataLeakageWithBlur() async {
@@ -82,11 +84,20 @@ class ScreenProtector {
 
   /// Supported for Anddroid and iOS.
   static Future<void> preventScreenshotOn() async {
-    return await _channel.invokeMethod('preventScreenshotOn');
+    if (Platform.isAndroid) {
+      await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+
+    } else if (Platform.isIOS) {
+      return await _channel.invokeMethod('preventScreenshotOn');
+    }
   }
 
   /// Supported for Anddroid and iOS.
   static Future<void> preventScreenshotOff() async {
-    return await _channel.invokeMethod('preventScreenshotOff');
+    if (Platform.isAndroid) {
+      await FlutterWindowManager.clearFlags(FlutterWindowManager.FLAG_SECURE);
+    } else if (Platform.isIOS) {
+      return await _channel.invokeMethod('preventScreenshotOff');
+    }
   }
 }

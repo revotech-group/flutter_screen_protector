@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:screen_protector/screen_protector.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -21,6 +22,7 @@ class MainPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/prevent-screenshot');
+
               },
               child: const Text('Secure Screen'),
             ),
@@ -29,4 +31,6 @@ class MainPage extends StatelessWidget {
       ),
     );
   }
+
+
 }

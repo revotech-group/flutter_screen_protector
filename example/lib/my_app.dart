@@ -22,25 +22,25 @@ class _MyAppState extends LifecycleState<MyApp> {
   @override
   void onResumed() {
     // For Android only.
-    _protectDataLeakageAndPreventScreenshotOff();
+    // _protectDataLeakageAndPreventScreenshotOff();
     super.onResumed();
   }
 
   @override
   void onPaused() {
     // For Android only.
-    _protectDataLeakagePreventScreenshotOn();
+    // _protectDataLeakagePreventScreenshotOn();
     super.onPaused();
   }
 
   void _protectDataLeakageWithColor() async =>
       await ScreenProtector.protectDataLeakageWithColor(Colors.white);
 
-  void _protectDataLeakageAndPreventScreenshotOff() async =>
-      await ScreenProtector.protectDataLeakageOff();
-
-  void _protectDataLeakagePreventScreenshotOn() async =>
-      await ScreenProtector.protectDataLeakageOn();
+  // void _protectDataLeakageAndPreventScreenshotOff() async =>
+  //     await ScreenProtector.protectDataLeakageOff();
+  //
+  // void _protectDataLeakagePreventScreenshotOn() async =>
+  //     await ScreenProtector.protectDataLeakageOn();
 
   @override
   Widget build(BuildContext context) {

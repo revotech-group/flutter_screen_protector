@@ -29,13 +29,13 @@ class _PreventScreenshotPageState
 
   @override
   void onPaused() {
-    _protectScreenOn();
+    // _protectScreenOn();
     super.onPaused();
   }
 
   @override
   void onResumed() {
-    _protectScreenOff();
+    // _protectScreenOff();
     super.onResumed();
   }
 
@@ -58,10 +58,10 @@ class _PreventScreenshotPageState
   void _preventScreenshotOff() async =>
       await ScreenProtector.preventScreenshotOff();
 
-  void _protectScreenOn() async => await ScreenProtector.protectDataLeakageOn();
-
-  void _protectScreenOff() async =>
-      await ScreenProtector.protectDataLeakageOff();
+  // void _protectScreenOn() async => await ScreenProtector.protectDataLeakageOn();
+  //
+  // void _protectScreenOff() async =>
+  //     await ScreenProtector.protectDataLeakageOff();
 
   void _addListenerPreventScreenshot() async {
     ScreenProtector.addListener(() {
